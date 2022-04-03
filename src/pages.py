@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, redirect, render_template, request, flash, redirect, url_for
 from flask_login import current_user, login_required
 from .models import Event
 from . import db
@@ -10,7 +10,9 @@ pages = Blueprint("pages", __name__)
 @pages.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html", user=current_user)
+    # collect of the events in the events table
+    events = Event.query.all()
+    return render_template("dashboard.html", user=current_user, events=events)
 
 
 @pages.route("/create-event", methods=['GET', 'POST'])
@@ -35,5 +37,6 @@ def create_event():
             db.session.add(event)
             db.session.commit()
             flash('Event created', category='success')
+            return redirect(url_for('pages.dashboard'))
 
     return render_template('create_event.html', user=current_user)
