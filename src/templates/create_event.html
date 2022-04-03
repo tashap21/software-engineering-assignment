@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+    <h1 align="center">Create an event</h1>
+    
+    <form method="POST">
+    <div class="form-group">
+        <label for="event">Name of event: </label>
+        <input type="text" id="event" name="event" class="form-control"/>
+        <br />
+        <label for="eventtime">Date and Time of the Event:</label>
+        <input type="datetime-local" id="eventtime" name="eventtime" class="form-control">
+        <br />
+        <label for="description">Description of the event: </label>
+      <textarea name="description" id="description" class="form-control"></textarea>
+      <br />
+    <div class="form-group">
+      <div align="center">
+        <button type="submit" class="btn btn-lg btn-primary"> Submit Event</button>
+      </div>
+    </form>
+    <br />
+    <div align="center">
+      <a href="/dashboard"
+        ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
+      >
+    </div>
+    {% endblock %}
