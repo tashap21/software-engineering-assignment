@@ -45,7 +45,7 @@ def sign_up():
             flash('An account with this name already exists', category='error')
         elif password1 != password2:
             flash('Password does not match', category='error')
-        elif len(password1) < 7:
+        elif len(password1) < 8:
             flash('Password is too short', category='error')
         else:
             new_user = User(email=email, name=name, password=generate_password_hash(
